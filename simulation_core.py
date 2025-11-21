@@ -379,7 +379,7 @@ class DataSaver:
     def save_video(self, frames, filename="Simulation.mp4"):
         if self.config.save_video:
             print(Fore.YELLOW + "Saving video... this may take a moment.")
-            imageio.mimsave(self.path / filename, frames, fps=20)
+            imageio.mimsave(self.path / filename, frames, fps=20, macro_block_size=1)
             print(Fore.GREEN + f"Saved video: {self.path / filename}")
 
 # === Metrics ===

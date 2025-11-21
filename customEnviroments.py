@@ -13,6 +13,7 @@ from simglucose.envs import T1DSimGymnaisumEnv
 from datetime import datetime, timedelta
 
 class CustomT1DSimGymnaisumEnv(T1DSimGymnaisumEnv):
+    metadata = {'render_modes': ['human', 'rgb_array'], 'render_fps': 20}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -55,6 +56,7 @@ class CustomT1DSimGymnaisumEnv(T1DSimGymnaisumEnv):
         return observation, reward, terminated, truncated, info
  
 class LowGlucoseEnv(T1DSimGymnaisumEnv):
+    metadata = {'render_modes': ['human', 'rgb_array'], 'render_fps': 20}
     def step(self, action):
         observation, reward, terminated, truncated, info = super().step(action)
         blood_glucose = observation[0]
@@ -81,6 +83,7 @@ class LowGlucoseEnv(T1DSimGymnaisumEnv):
         return observation, reward, terminated, truncated, info
 
 class HighGlucoseEnv(T1DSimGymnaisumEnv):
+    metadata = {'render_modes': ['human', 'rgb_array'], 'render_fps': 20}
     def step(self, action):
         observation, reward, terminated, truncated, info = super().step(action)
         blood_glucose = observation[0]
@@ -104,6 +107,7 @@ class HighGlucoseEnv(T1DSimGymnaisumEnv):
         return observation, reward, terminated, truncated, info
 
 class InnerGlucoseEnv(T1DSimGymnaisumEnv):
+    metadata = {'render_modes': ['human', 'rgb_array'], 'render_fps': 20}
     def step(self, action):
         observation, reward, terminated, truncated, info = super().step(action)
         blood_glucose = observation[0]
