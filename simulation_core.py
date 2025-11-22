@@ -167,13 +167,13 @@ class MealGenerator:
 
     def create_meal_scenario(self, bw):
         meal_events = generated_day(bw)
-        meals = [(event[2], event[0]) for event in meal_events]
+        meals = [(event[1] // 60, event[0]) for event in meal_events]
         return CustomScenario(start_time=self.config.start_time, scenario=meals), meals
 
     def print_meals(self, meals):
         print("CHO intakes:")
         for meal in meals:
-            meal_time_hours = meal[0] // 60
+            meal_time_hours = meal[0]
             print(Fore.BLUE + f"   Meal: at {meal_time_hours} o'clock {meal[1]}g")
         print(Fore.RESET)
 
