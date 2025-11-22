@@ -142,11 +142,11 @@ def clear_console():
 # === Config ===
 
 class SimulationConfig:
-    def __init__(self, model_type="TD3"):
+    def __init__(self, model_type="PPO", patient_name=PATIENT_NAME, TIMESTEPS=300):
         self.save_to_csv = True
         self.save_video = True
         self.render_sim = True
-        self.patient_name = PATIENT_NAME
+        self.patient_name = patient_name
         self.start_time = datetime(2025, 1, 1, 0, 0, 0)
         self.time_steps = TIMESTEPS
         self.max_episode_steps = 480
@@ -384,6 +384,12 @@ class DataSaver:
             df = pd.DataFrame(data)
             df.to_csv(self.path / filename, index=False)
             print(Fore.GREEN + f"Saved CSV: {self.path / filename}")
+
+    def save_meals_to_csv(self, meals, filename="meals.csv"):
+        if self.config.save_to_csv:
+            df = pd.DataFrame(meals, columns=['Time (hours)', 'Carbohydrates (g)'])
+            df.to_csv(self.path / filename, index=False)
+            print(Fore.GREEN + f"Saved meals CSV: {self.path / filename}")
 
     def save_video(self, frames, filename="Simulation.mp4"):
         if self.config.save_video:

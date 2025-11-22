@@ -6,7 +6,7 @@ from simulation_core import (
 # === Main Entry Point ===
 def main():
     # Setup Config 
-    config = SimulationConfig(model_type="PPO")
+    config = SimulationConfig(model_type="PPO", patient_name="child#002")
     patient_params = config.get_patient_params()
     print(f"Patient {config.patient_name} | BW: {patient_params['bw']} kg")
 
@@ -31,6 +31,7 @@ def main():
     # Save Result and metrics
     saver = DataSaver(env_mgr.path_to_results, config)
     saver.save_csv(log_data)
+    saver.save_meals_to_csv(meals)
     saver.save_video(frames)
     saver.save_plot(log_data)
 
