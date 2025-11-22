@@ -346,14 +346,20 @@ class SimulationRunner:
 
             current_time += timedelta(minutes=3)
             action = self.select_action(obs)
-            meal_amount = info.get("meal", 0) # Get meal amount for the current step
-            action = self.apply_insulin_rules(action, obs[0], risk, current_time)
-            # Pass only the insulin action to the environment
-            obs, reward, terminated, truncated, info = self.env.step(action)
+            meal_amount = info.get("meal", 0)  # Get meal amount for the current step
+
+            # Extract scalar for rules and logging
+            action_value = action.item() if isinstance(action, np.ndarray) else action
+            action_value = self.apply_insulin_rules(action_value, obs[0], risk, current_time)
+
+            # Environment expects an array for Box action space
+            action_for_env = np.array([action_value])
+
+            obs, reward, terminated, truncated, info = self.env.step(action_for_env)
             risk = info.get("risk", 0)
 
             self.log_data.append({
-                "action": action,
+                "action": action_value,
                 "blood glucose": obs[0],
                 "reward": reward,
                 "meal": meal_amount,
@@ -364,6 +370,9 @@ class SimulationRunner:
         return self.frames, self.log_data
 
 # === Data Saving ===
+
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 class DataSaver:
     def __init__(self, path: Path, config: SimulationConfig):
@@ -381,6 +390,69 @@ class DataSaver:
             print(Fore.YELLOW + "Saving video... this may take a moment.")
             imageio.mimsave(self.path / filename, frames, fps=20, macro_block_size=1)
             print(Fore.GREEN + f"Saved video: {self.path / filename}")
+
+    def save_plot(self, data, filename="BG_Plot.png"):
+        if not self.config.save_to_csv or not data:
+            return
+
+        print(Fore.YELLOW + "Generating plot...")
+        df = pd.DataFrame(data)
+        if df.empty:
+            print(Fore.YELLOW + "Log data is empty, skipping plot generation.")
+            return
+
+        fig, ax1 = plt.subplots(figsize=(15, 8))
+
+        # Blood Glucose
+        color = 'tab:blue'
+        ax1.set_xlabel('Time')
+        ax1.set_ylabel('Blood Glucose (mg/dL)', color=color)
+        ax1.plot(df['time'], df['blood glucose'], color=color, label='Blood Glucose')
+        ax1.tick_params(axis='y', labelcolor=color)
+        ax1.axhline(y=70, color='r', linestyle='--', label='Hypoglycemia (70)')
+        ax1.axhline(y=180, color='orange', linestyle='--', label='Hyperglycemia (180)')
+
+        # X-axis ticks
+        plt.xticks(rotation=45)
+        ax1.xaxis.set_major_locator(MaxNLocator(24))
+        fig.autofmt_xdate()
+
+        # Insulin
+        ax2 = ax1.twinx()
+        color = 'tab:green'
+        ax2.set_ylabel('Insulin (U)', color=color)
+        insulin_times = df.loc[df['action'] > 0, 'time']
+        insulin_doses = df.loc[df['action'] > 0, 'action']
+        if not insulin_doses.empty:
+            ax2.bar(insulin_times, insulin_doses, color=color, alpha=0.6, width=0.8, label='Insulin Bolus')
+        ax2.tick_params(axis='y', labelcolor=color)
+        ax2.set_ylim(0, max(3.5, insulin_doses.max() * 1.1 if not insulin_doses.empty else 3.5))
+
+        # Meals
+        ax3 = ax1.twinx()
+        ax3.spines['right'].set_position(('outward', 60))
+        color = 'tab:red'
+        ax3.set_ylabel('Carbohydrates (g)', color=color)
+        meal_times = df.loc[df['meal'] > 0, 'time']
+        meal_carbs = df.loc[df['meal'] > 0, 'meal']
+        if not meal_carbs.empty:
+            ax3.bar(meal_times, meal_carbs, color=color, alpha=0.6, width=0.8, label='Meals')
+        ax3.tick_params(axis='y', labelcolor=color)
+        ax3.set_ylim(0, max(100, meal_carbs.max() * 1.1 if not meal_carbs.empty else 100))
+
+        # Title and legend
+        plt.title('Simulation Results')
+        lines, labels = ax1.get_legend_handles_labels()
+        lines2, labels2 = ax2.get_legend_handles_labels()
+        lines3, labels3 = ax3.get_legend_handles_labels()
+        ax1.legend(lines + lines2 + lines3, labels + labels2 + labels3, loc='upper left')
+        
+        fig.tight_layout()
+        
+        plot_path = self.path / filename
+        plt.savefig(plot_path)
+        plt.close(fig)
+        print(Fore.GREEN + f"Saved plot: {plot_path}")
 
 # === Metrics ===
 

@@ -32,6 +32,7 @@ def main():
     saver = DataSaver(env_mgr.path_to_results, config)
     saver.save_csv(log_data)
     saver.save_video(frames)
+    saver.save_plot(log_data)
 
     metrics_calc = MetricsCalculator(env_mgr.path_to_results)
     metrics = metrics_calc.calculate(log_data)
