@@ -2,6 +2,9 @@ from simulation_core import (
     SimulationConfig, MealGenerator, EnvironmentManager,
     ModelTrainer, SimulationRunner, DataSaver, MetricsCalculator
 )
+import pandas as pd
+from lime_explainer import Predictor, Explainer
+
 
 # === Main Entry Point ===
 def main():
@@ -27,6 +30,48 @@ def main():
     # Run the simulation
     runner = SimulationRunner(env, lowmodel, innermodel, highmodel, config)
     frames, log_data = runner.run()
+
+    # Create a DataFrame from the log data
+    log_df = pd.DataFrame(log_data)
+
+    # LIME Explanation
+    if not log_df.empty:
+        print("=" * 60)
+        print("     Generating LIME Explanations for Actions")
+        print("=" * 60)
+        
+        # 1. Create a predictor
+        predictor = Predictor(lowmodel, innermodel, highmodel)
+
+        # 2. Create an explainer
+        feature_names = ['blood glucose', 'meal']
+        training_data = log_df[feature_names].values
+        
+        explainer = Explainer(predictor, training_data, feature_names)
+
+        # 3. Explain instances where an action was taken
+        explanations_log = []
+        action_indices = log_df[log_df['action'] > 0].index
+
+        for i in action_indices:
+            instance_to_explain = training_data[i]
+            explanation = explainer.explain_instance(instance_to_explain, num_features=len(feature_names))
+            
+            log_entry = f"--- Explanation for Step at Time: {log_df.loc[i, 'time']} (Action: {log_df.loc[i, 'action']:.2f}) ---\n"
+            log_entry += f"Model Prediction: {explanation.predicted_value:.2f}\n"
+            log_entry += "Feature Contributions:\n"
+            for feature, weight in explanation.as_list():
+                log_entry += f"  - {feature}: {weight:.4f}\n"
+            explanations_log.append(log_entry)
+
+        # 4. Save the explanations to a log file
+        if explanations_log:
+            explanation_path = env_mgr.path_to_results / "lime_explanations_log.txt"
+            with open(explanation_path, "w") as f:
+                f.write("\n\n".join(explanations_log))
+            print(f"LIME explanations log saved to: {explanation_path}")
+        else:
+            print("No actions were taken during the simulation, so no LIME explanations were generated.")
 
     # Save Result and metrics
     saver = DataSaver(env_mgr.path_to_results, config)

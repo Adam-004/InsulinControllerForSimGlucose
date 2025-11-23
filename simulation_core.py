@@ -326,13 +326,13 @@ class SimulationRunner:
         coefficient = 1 + (risk / 30)  # Reduced from /20 to /30 for an even gentler effect.
 
         # 2. An even lower initial cap on the model's output for very fine-grained control.
-        action = min(action, 0.15) * coefficient # Reduced from 0.2 to 0.15.
+        action = min(action, 0.3) * coefficient # Increased from 0.2 to 0.3 to encourage more action.
 
         # 3. The "soft landing" for hypoglycemia prevention remains a critical safety feature.
-        if observation < 130:
-            # This creates a linear factor from 0.0 (at 100 mg/dL) to 1.0 (at 130 mg/dL).
+        if observation < 120:
+            # This creates a linear factor from 0.0 (at 100 mg/dL) to 1.0 (at 120 mg/dL).
             # Below 100, the dose becomes 0.
-            scaling_factor = max(0, (observation - 100) / 30)
+            scaling_factor = max(0, (observation - 100) / 20)
             action *= scaling_factor
 
         # 4. A hard maximum dose cap of 0.5 units remains as a final safety backstop.
@@ -414,7 +414,7 @@ class DataSaver:
     def save_video(self, frames, filename="Simulation.mp4"):
         if self.config.save_video:
             print(Fore.YELLOW + "Saving video... this may take a moment.")
-            imageio.mimsave(self.path / filename, frames, fps=20, macro_block_size=1)
+            imageio.mimsave(self.path / filename, frames, format='FFMPEG', fps=20)
             print(Fore.GREEN + f"Saved video: {self.path / filename}")
 
     def save_plot(self, data, filename="BG_Plot.png"):

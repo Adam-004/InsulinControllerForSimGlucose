@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from pathlib import Path
 from stable_baselines3 import A2C, TD3
 
@@ -7,6 +8,7 @@ from simulation_core import (
     ModelTrainer, SimulationRunner, DataSaver, MetricsCalculator, 
     clear_console
 )
+from lime_explainer import Predictor, Explainer
 
 def main():
     clear_console()
@@ -38,9 +40,38 @@ def main():
     runner = SimulationRunner(env, lowmodel, innermodel, highmodel, config)
     frames, log_data = runner.run()
 
+    # Create a DataFrame from the log data
+    log_df = pd.DataFrame(log_data)
+
+    # LIME Explanation
+    if not log_df.empty:
+        print("=" * 60)
+        print("     Generating LIME Explanation")
+        print("=" * 60)
+        
+        # 1. Create a predictor
+        predictor = Predictor(lowmodel, innermodel, highmodel)
+
+        # 2. Create an explainer
+        feature_names = ['blood glucose', 'meal']
+        training_data = log_df[feature_names].values
+        
+        explainer = Explainer(predictor, training_data, feature_names)
+
+        # 3. Explain an instance (e.g., the first row)
+        instance_to_explain = training_data[0]
+        explanation = explainer.explain_instance(instance_to_explain, num_features=len(feature_names))
+
+        # 4. Save the explanation to an HTML file
+        explanation_path = env_mgr.path_to_results / "lime_explanation.html"
+        explanation.save_to_html(explanation_path)
+        print(f"LIME explanation saved to: {explanation_path}")
+
+
     saver = DataSaver(env_mgr.path_to_results, config)
     saver.save_csv(log_data)
     saver.save_video(frames)
+    saver.save_plot(log_data)
 
     metrics_calc = MetricsCalculator(env_mgr.path_to_results)
     metrics = metrics_calc.calculate(log_data)
