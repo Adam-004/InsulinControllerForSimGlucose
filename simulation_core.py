@@ -18,7 +18,7 @@ from stable_baselines3.common.callbacks import BaseCallback
 
 
 TIMESTEPS = 300
-PATIENT_NAME = "adult#002"
+PATIENT_NAME = "child#002"
 
 # === Utility ===
 
@@ -313,16 +313,36 @@ class SimulationRunner:
         return action
 
     def apply_insulin_rules(self, action, observation, risk, current_time):
-        coefficient = 1.5 * risk if risk > 1 else 1
-        action = min(action, 0.1) * coefficient
-        if observation < 125:
-            action = 0
-        action = min(action, 3.5)
+        # The previous rules are commented out as requested.
+        # coefficient = 1.5 * risk if risk > 1 else 1
+        # action = min(action, 0.1) * coefficient
+        # if observation < 125:
+        #     action = 0
+        # action = min(action, 3.5)
+
+        # New, ultra-conservative rules for a sensitive pediatric patient, further refined for subtlety.
+        
+        # 1. Extremely gentle risk-based scaling to avoid any sudden increases.
+        coefficient = 1 + (risk / 30)  # Reduced from /20 to /30 for an even gentler effect.
+
+        # 2. An even lower initial cap on the model's output for very fine-grained control.
+        action = min(action, 0.15) * coefficient # Reduced from 0.2 to 0.15.
+
+        # 3. The "soft landing" for hypoglycemia prevention remains a critical safety feature.
+        if observation < 130:
+            # This creates a linear factor from 0.0 (at 100 mg/dL) to 1.0 (at 130 mg/dL).
+            # Below 100, the dose becomes 0.
+            scaling_factor = max(0, (observation - 100) / 30)
+            action *= scaling_factor
+
+        # 4. A hard maximum dose cap of 0.5 units remains as a final safety backstop.
+        action = min(action, 0.5)
+
 
         # Dosing limits
-        self.insulin_timestamps = [t for t in self.insulin_timestamps if t > current_time - timedelta(hours=2)]
+        self.insulin_timestamps = [t for t in self.insulin_timestamps if t > current_time - timedelta(hours=1)]
         if len(self.insulin_timestamps) >= 3:
-            print(Fore.RED + f"[Dosing Prohibited] Too many injections in last 2 hrs.")
+            print(Fore.RED + f"[Dosing Prohibited] Too many injections in last 1 hr.")
             action = 0
         elif action > 0:
             self.insulin_timestamps.append(current_time)
