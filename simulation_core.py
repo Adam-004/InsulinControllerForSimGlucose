@@ -488,7 +488,7 @@ class MetricsCalculator:
 
     def calculate(self, log_data):
         df = pd.DataFrame(log_data)
-        tir = ((df["blood glucose"] >= 70) & (df["blood glucose"] <= 130)).mean() * 100
+        tir = ((df["blood glucose"] >= 70) & (df["blood glucose"] <= 180)).mean() * 100
         hypo = (df["blood glucose"] < 70).sum()
         hyper = (df["blood glucose"] > 180).sum()
         mean_risk = df["risk"].mean()
