@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insulin Dosage Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Model Based Insulin Dosage Manager For Children</h1>
+        <form id="prediction-form">
+            <div class="form-group">
+                <label for="model">Model</label>
+                <select id="model" name="model" required>
+                    <option value="">Select a model</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="blood-glucose">Blood Glucose (mg/dL)</label>
+                <input type="number" id="blood-glucose" name="blood_glucose" required>
+            </div>
+            <div class="form-group">
+                <label for="meal">Meal (g)</label>
+                <input type="number" id="meal" name="meal">
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
