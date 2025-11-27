@@ -1,0 +1,432 @@
+--- Explanation for Step at Time: 00:03 (Action: 0.05) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0147
+  - meal <= 0.00: 0.0020
+
+
+--- Explanation for Step at Time: 00:06 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0153
+  - meal <= 0.00: 0.0024
+
+
+--- Explanation for Step at Time: 00:09 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0149
+  - meal <= 0.00: -0.0015
+
+
+--- Explanation for Step at Time: 01:03 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0150
+  - meal <= 0.00: 0.0009
+
+
+--- Explanation for Step at Time: 01:06 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0152
+  - meal <= 0.00: -0.0033
+
+
+--- Explanation for Step at Time: 01:09 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0150
+  - meal <= 0.00: 0.0008
+
+
+--- Explanation for Step at Time: 02:03 (Action: 0.05) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - blood glucose <= 135.15: -0.0522
+  - meal <= 0.00: 0.0006
+
+
+--- Explanation for Step at Time: 02:06 (Action: 0.05) ---
+Model Prediction: 0.00
+Feature Contributions:
+  - blood glucose <= 135.15: -0.0529
+  - meal <= 0.00: -0.0006
+
+
+--- Explanation for Step at Time: 04:33 (Action: 0.05) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - blood glucose <= 135.15: -0.0529
+  - meal <= 0.00: 0.0015
+
+
+--- Explanation for Step at Time: 04:36 (Action: 0.05) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0149
+  - meal <= 0.00: -0.0004
+
+
+--- Explanation for Step at Time: 04:39 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0151
+  - meal <= 0.00: -0.0005
+
+
+--- Explanation for Step at Time: 05:33 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0157
+  - meal <= 0.00: 0.0026
+
+
+--- Explanation for Step at Time: 05:36 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0156
+  - meal <= 0.00: 0.0019
+
+
+--- Explanation for Step at Time: 05:39 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0157
+  - meal <= 0.00: 0.0015
+
+
+--- Explanation for Step at Time: 06:33 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0149
+  - meal <= 0.00: -0.0054
+
+
+--- Explanation for Step at Time: 06:36 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0148
+  - meal <= 0.00: -0.0012
+
+
+--- Explanation for Step at Time: 06:39 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0154
+  - meal <= 0.00: -0.0001
+
+
+--- Explanation for Step at Time: 07:33 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0153
+  - meal <= 0.00: 0.0023
+
+
+--- Explanation for Step at Time: 07:36 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0173
+  - meal <= 0.00: -0.0043
+
+
+--- Explanation for Step at Time: 07:39 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0179
+  - meal <= 0.00: 0.0043
+
+
+--- Explanation for Step at Time: 08:33 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0191
+  - meal <= 0.00: -0.0007
+
+
+--- Explanation for Step at Time: 08:36 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0188
+  - meal <= 0.00: 0.0058
+
+
+--- Explanation for Step at Time: 08:39 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0185
+  - meal <= 0.00: 0.0009
+
+
+--- Explanation for Step at Time: 09:33 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0188
+  - meal <= 0.00: 0.0015
+
+
+--- Explanation for Step at Time: 09:36 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0198
+  - meal <= 0.00: -0.0023
+
+
+--- Explanation for Step at Time: 09:39 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0189
+  - meal <= 0.00: -0.0030
+
+
+--- Explanation for Step at Time: 10:33 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0202
+  - meal <= 0.00: 0.0001
+
+
+--- Explanation for Step at Time: 10:36 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0192
+  - meal <= 0.00: -0.0042
+
+
+--- Explanation for Step at Time: 10:39 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0186
+  - meal <= 0.00: 0.0016
+
+
+--- Explanation for Step at Time: 11:33 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0173
+  - meal <= 0.00: -0.0009
+
+
+--- Explanation for Step at Time: 11:36 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0184
+  - meal <= 0.00: -0.0013
+
+
+--- Explanation for Step at Time: 11:39 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0178
+  - meal <= 0.00: -0.0011
+
+
+--- Explanation for Step at Time: 12:33 (Action: 0.10) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0193
+  - meal <= 0.00: 0.0038
+
+
+--- Explanation for Step at Time: 12:36 (Action: 0.10) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0197
+  - meal <= 0.00: 0.0021
+
+
+--- Explanation for Step at Time: 12:39 (Action: 0.10) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0192
+  - meal <= 0.00: 0.0055
+
+
+--- Explanation for Step at Time: 13:33 (Action: 0.10) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0195
+  - meal <= 0.00: -0.0025
+
+
+--- Explanation for Step at Time: 13:36 (Action: 0.10) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0195
+  - meal <= 0.00: -0.0004
+
+
+--- Explanation for Step at Time: 13:39 (Action: 0.10) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0187
+  - meal <= 0.00: 0.0007
+
+
+--- Explanation for Step at Time: 14:33 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0177
+  - meal <= 0.00: -0.0039
+
+
+--- Explanation for Step at Time: 14:36 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0177
+  - meal <= 0.00: 0.0018
+
+
+--- Explanation for Step at Time: 14:39 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0174
+  - meal <= 0.00: 0.0002
+
+
+--- Explanation for Step at Time: 15:33 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0183
+  - meal <= 0.00: 0.0005
+
+
+--- Explanation for Step at Time: 15:36 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0187
+  - meal <= 0.00: 0.0011
+
+
+--- Explanation for Step at Time: 15:39 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0180
+  - meal <= 0.00: -0.0002
+
+
+--- Explanation for Step at Time: 16:33 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0149
+  - meal <= 0.00: -0.0001
+
+
+--- Explanation for Step at Time: 16:36 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0145
+  - meal <= 0.00: -0.0011
+
+
+--- Explanation for Step at Time: 16:39 (Action: 0.06) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0144
+  - meal <= 0.00: 0.0010
+
+
+--- Explanation for Step at Time: 19:39 (Action: 0.05) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - blood glucose <= 135.15: -0.0530
+  - meal <= 0.00: 0.0003
+
+
+--- Explanation for Step at Time: 19:42 (Action: 0.05) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0151
+  - meal <= 0.00: 0.0035
+
+
+--- Explanation for Step at Time: 19:45 (Action: 0.06) ---
+Model Prediction: 0.05
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0156
+  - meal <= 0.00: 0.0008
+
+
+--- Explanation for Step at Time: 20:39 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0178
+  - meal <= 0.00: 0.0068
+
+
+--- Explanation for Step at Time: 20:42 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0174
+  - meal <= 0.00: -0.0032
+
+
+--- Explanation for Step at Time: 20:45 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0179
+  - meal <= 0.00: -0.0005
+
+
+--- Explanation for Step at Time: 21:39 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0192
+  - meal <= 0.00: 0.0001
+
+
+--- Explanation for Step at Time: 21:42 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0190
+  - meal <= 0.00: -0.0033
+
+
+--- Explanation for Step at Time: 21:45 (Action: 0.09) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0196
+  - meal <= 0.00: 0.0016
+
+
+--- Explanation for Step at Time: 22:39 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0191
+  - meal <= 0.00: -0.0055
+
+
+--- Explanation for Step at Time: 22:42 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - blood glucose > 211.65: 0.0185
+  - meal <= 0.00: -0.0023
+
+
+--- Explanation for Step at Time: 22:45 (Action: 0.08) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0186
+  - meal <= 0.00: 0.0006
+
+
+--- Explanation for Step at Time: 23:39 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0185
+  - meal <= 0.00: -0.0025
+
+
+--- Explanation for Step at Time: 23:42 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 159.17 < blood glucose <= 211.65: 0.0183
+  - meal <= 0.00: 0.0012
+
+
+--- Explanation for Step at Time: 23:45 (Action: 0.07) ---
+Model Prediction: 0.06
+Feature Contributions:
+  - 135.15 < blood glucose <= 159.17: 0.0147
+  - meal <= 0.00: 0.0029
