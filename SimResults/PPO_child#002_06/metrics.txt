@@ -1,0 +1,5 @@
+TIR (%): 0.62
+Hypo Events: 0.00
+Hyper Events: 342.00
+Mean Risk: 17.71
+Average Reward: -10.95
